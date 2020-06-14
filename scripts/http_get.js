@@ -33,7 +33,7 @@ export default function() {
     return
 
   // Get the result (take the hostname from env and combine with url)
-  var res = http.get(`https://tivit.com/${url}`); 
+  var res = http.get(`https://kernel.org/${url}`); 
 	
   // Ensure all urls result in a 200 and return in required time
   var passed = check(res, {

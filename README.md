@@ -46,7 +46,7 @@ Este deploy já esta configurado com o datasource padrão apontando para o Influ
 	- User e senha configuradas no config.env
 	- Nome do banco influx
 
-6 - Agora instale os dashboards para a monitoração web e seja feliz
+6 - Agora instale os dashboards para a monitoração web, assim você coleta e plota em tempo real os dados de performance e disponibilidade:
 
 ![Grafana-InfluxD](./screen.png?raw=true "Grafana-InfluxDB")
 
@@ -54,7 +54,28 @@ Este gráfico já esta instalado e configurado para monitorar alguns sites, veja
 
 - dashboard do grafana para estatisticas web :  https://grafana.com/grafana/dashboards/11777
 
-- dashboard do k6 : https://grafana.com/grafana/dashboards/2587
+7 - Agora para o K6, realizar um teste mais preciso e com simulação de muito consumo e usuários simultâneos:
+
+Para as configurações do K6 você deve configurar os scripts em 'scripts/*' , estou fazendo um teste contra o site do Kernel Linux e com duas Urls, a /pub e a de documentações do Kernel.
+
+Depois de configurado e alterado, você roda o K6 como abaixo
+
+```bash
+docker-compose run -v $(pwd)/scripts:/scripts k6 run -o influxdb=http://influxdb:8086/myk6db /scripts/http_get.js
+```
+O resultado é o feedback do K6, como abaixo:
+
+![K6](./k6.png?raw=true "K6")
+
+Uma vez o processo do K6 rodado, você pode checar os resultados no Grafana com o dashboard específico e com o datasource correto, veja no comando acima que o nome do banco é 'myk6db', então use este banco para criar o novo datasource e depois apontar o datasource para o dashboard.
+
+O dashboard que estou usando é este aqui -> https://grafana.com/grafana/dashboards/2587
+
+Olha que bonito:
+
+![K6-Grafana](./k6-grafana.png?raw=true "K6-Grafana")
+
+Seja feliz !!!
 
 Qualquer problema envia um email glaucius@gmail.com
 
