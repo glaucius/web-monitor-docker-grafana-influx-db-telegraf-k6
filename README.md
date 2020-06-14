@@ -9,7 +9,7 @@ Uma busca simples na web pode te ajudar a instalar o docker de maneira simples, 
 1 - Pegue o código atualizado através do git, ou faça o download manual:
 
 ```bash
-git clone https://githu.com/glaucius/docker-grafana-influxdb-k6-telegraf.git
+git clone https://github.com/glaucius/web-monitor-docker-grafana-influx-db-telegraf-k6.git
 ```
 
 2 - Faça a configuração dos ambientes, nos arquivos de configuração e setup:
