@@ -1,6 +1,5 @@
 # Docker-Grafana-InfluxDb-K6-Telegraf
-# Monitoração simples e ponto de partida com ferramentas open source, faz testes de disponibilidade, performance e também teste de stress para todo e qualquer ambiente web, api, site e aplicação.
-
+## Monitoração simples e ponto de partida com ferramentas open source, faz testes de disponibilidade, performance e também teste de stress para todo e qualquer ambiente web, api, site e aplicação.
 ## Vamos embora então....
 
 Não preciso dizer que você precisa ter o docker e docker-compose instalado e operando no seu host ou notebook, laptop, raspberry pi, o que seja.
@@ -23,8 +22,6 @@ Para a configuração dos sites que devem ser monitorados, altere as ultimas lin
 ```bash
 nano telegraf/etc/telegraf.conf 
 ```
-
-
 Pode utilizar qualquer editor de textos, até mesmo o notepad. 
 
 3 - Cruze os dedos e mande subir o ambiente :
@@ -40,7 +37,10 @@ URL: http://localhost:3000
 User: admin 
 Password: admin 
 
-5 - Configure o Datasource no seu Grafana para o InfluxDB
+Este deploy já esta configurado com o datasource padrão apontando para o InfluxDB.
+
+
+5 - Você também pode criar novas bases no InfluxDB e criar novos datasources no Grafana, abaixo os dados para a conexão com o InfluxDB, lembre-se que estamos falando de uma rede gerenciada pelo Docker, então você pode usar o nome do serviço do Influxdb setado no docker-compose.yml.
 
 	- Url : http://influxdb:8086/
 	- User e senha configuradas no config.env
@@ -49,6 +49,8 @@ Password: admin
 6 - Agora instale os dashboards para a monitoração web e seja feliz
 
 ![Grafana-InfluxD](./screen.png?raw=true "Grafana-InfluxDB")
+
+Este gráfico já esta instalado e configurado para monitorar alguns sites, veja no arquivo de configuração do Telegraf.
 
 - dashboard do grafana para estatisticas web :  https://grafana.com/grafana/dashboards/11777
 
